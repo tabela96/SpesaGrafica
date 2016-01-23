@@ -17,6 +17,7 @@ public class SpesaGraficaTest {
 	private Text descrizione_text;
 	private Text codice_text;
 	private Text prezzo_text;
+	private Text text;
 
 	/**
 	 * Launch the application.
@@ -69,11 +70,11 @@ public class SpesaGraficaTest {
 		lblTesseraFedelt.setText("Tessera fedelt\u00E0:");
 		
 		scontrino_text = new Text(shell, SWT.BORDER);
-		scontrino_text.setBounds(10, 142, 459, 388);
+		scontrino_text.setBounds(10, 142, 459, 342);
 		
 		Label lblProdotto = new Label(shell, SWT.NONE);
 		lblProdotto.setBounds(10, 10, 55, 15);
-		lblProdotto.setText("Prodotto");
+		lblProdotto.setText("Prodotto:");
 		
 		Label lblDescrizione = new Label(shell, SWT.NONE);
 		lblDescrizione.setBounds(10, 41, 60, 15);
@@ -137,9 +138,29 @@ public class SpesaGraficaTest {
 		btnCarica.setBounds(389, 108, 75, 25);
 		btnCarica.setText("Carica");
 		
-		Button btnCalcolaTotale = new Button(shell, SWT.NONE);
-		btnCalcolaTotale.setBounds(296, 70, 81, 25);
-		btnCalcolaTotale.setText("Calcola totale");
+		Label lblAlimentare = new Label(shell, SWT.NONE);
+		lblAlimentare.setBounds(174, 10, 66, 15);
+		lblAlimentare.setText("Alimentare:");
+		
+		Button btnSi_1 = new Button(shell, SWT.RADIO);
+		btnSi_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnSi_1.setBounds(239, 10, 90, 16);
+		btnSi_1.setText("SI");
+		
+		Button btnRadioButton = new Button(shell, SWT.RADIO);
+		btnRadioButton.setBounds(272, 10, 90, 16);
+		btnRadioButton.setText("NO");
+		
+		Label lblPrezzoTotale = new Label(shell, SWT.NONE);
+		lblPrezzoTotale.setBounds(10, 504, 76, 15);
+		lblPrezzoTotale.setText("Prezzo totale: ");
+		
+		text = new Text(shell, SWT.BORDER);
+		text.setBounds(96, 498, 76, 21);
 
 	}
 }
