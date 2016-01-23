@@ -41,5 +41,5 @@ public class ListaSpesa {
 		return totale;
 	}
 	
-	
+	//CIAONE
 }	
