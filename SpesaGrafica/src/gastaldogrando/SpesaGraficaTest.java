@@ -100,10 +100,21 @@ public class SpesaGraficaTest {
 		prezzo_text.setText("");
 		prezzo_text.setBounds(80, 108, 76, 21);
 		
+		
+		
 		Button btnAggiungi = new Button(shell, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				scontrino_text.setText(prodotto_text.getText());
+				scontrino_text.setText("\n");
+				scontrino_text.setText(descrizione_text.getText());
+				scontrino_text.setText("\n");
+				scontrino_text.setText(codice_text.getText());
+				scontrino_text.setText("\n");
+				scontrino_text.setText(prezzo_text.getText());
+				scontrino_text.setText("\n");
+				
 			}
 		});
 		btnAggiungi.setBounds(174, 70, 75, 25);
