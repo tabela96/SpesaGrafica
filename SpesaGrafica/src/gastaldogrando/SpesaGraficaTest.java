@@ -13,6 +13,10 @@ public class SpesaGraficaTest {
 
 	protected Shell shell;
 	private Text scontrino_text;
+	private Text prodotto_text;
+	private Text descrizione_text;
+	private Text codice_text;
+	private Text prezzo_text;
 
 	/**
 	 * Launch the application.
@@ -47,7 +51,7 @@ public class SpesaGraficaTest {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(495, 578);
 		shell.setText("SWT Application");
 		
 		Button btnNuovoScontrino = new Button(shell, SWT.NONE);
@@ -57,23 +61,57 @@ public class SpesaGraficaTest {
 				scontrino_text.setText("");
 			}
 		});
-		btnNuovoScontrino.setBounds(259, 21, 101, 25);
+		btnNuovoScontrino.setBounds(368, 10, 101, 25);
 		btnNuovoScontrino.setText("Nuovo scontrino");
 		
 		Label lblTesseraFedelt = new Label(shell, SWT.NONE);
-		lblTesseraFedelt.setBounds(23, 31, 81, 15);
+		lblTesseraFedelt.setBounds(296, 41, 81, 15);
 		lblTesseraFedelt.setText("Tessera fedelt\u00E0:");
 		
 		Button btnSi = new Button(shell, SWT.CHECK);
-		btnSi.setBounds(116, 30, 36, 16);
+		btnSi.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnSi.setBounds(389, 41, 36, 16);
 		btnSi.setText("Si");
 		
 		Button btnNo = new Button(shell, SWT.CHECK);
-		btnNo.setBounds(158, 30, 36, 16);
+		btnNo.setBounds(431, 41, 36, 16);
 		btnNo.setText("No");
 		
 		scontrino_text = new Text(shell, SWT.BORDER);
-		scontrino_text.setBounds(259, 66, 128, 114);
+		scontrino_text.setBounds(10, 142, 459, 388);
+		
+		Label lblProdotto = new Label(shell, SWT.NONE);
+		lblProdotto.setBounds(10, 10, 55, 15);
+		lblProdotto.setText("Prodotto");
+		
+		Label lblDescrizione = new Label(shell, SWT.NONE);
+		lblDescrizione.setBounds(10, 41, 60, 15);
+		lblDescrizione.setText("Descrizione");
+		
+		Label lblCodice = new Label(shell, SWT.NONE);
+		lblCodice.setBounds(10, 76, 55, 15);
+		lblCodice.setText("Codice");
+		
+		Label lblPrezzo = new Label(shell, SWT.NONE);
+		lblPrezzo.setBounds(10, 108, 55, 15);
+		lblPrezzo.setText("Prezzo");
+		
+		prodotto_text = new Text(shell, SWT.BORDER);
+		prodotto_text.setBounds(80, 12, 76, 21);
+		
+		descrizione_text = new Text(shell, SWT.BORDER);
+		descrizione_text.setBounds(80, 38, 76, 21);
+		
+		codice_text = new Text(shell, SWT.BORDER);
+		codice_text.setBounds(80, 70, 76, 21);
+		
+		prezzo_text = new Text(shell, SWT.BORDER);
+		prezzo_text.setText("");
+		prezzo_text.setBounds(80, 108, 76, 21);
 
 	}
 }
