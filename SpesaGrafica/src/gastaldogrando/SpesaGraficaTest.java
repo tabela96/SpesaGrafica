@@ -68,19 +68,6 @@ public class SpesaGraficaTest {
 		lblTesseraFedelt.setBounds(296, 41, 81, 15);
 		lblTesseraFedelt.setText("Tessera fedelt\u00E0:");
 		
-		Button btnSi = new Button(shell, SWT.CHECK);
-		btnSi.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-			}
-		});
-		btnSi.setBounds(389, 41, 36, 16);
-		btnSi.setText("Si");
-		
-		Button btnNo = new Button(shell, SWT.CHECK);
-		btnNo.setBounds(431, 41, 36, 16);
-		btnNo.setText("No");
-		
 		scontrino_text = new Text(shell, SWT.BORDER);
 		scontrino_text.setBounds(10, 142, 459, 388);
 		
