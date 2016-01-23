@@ -93,7 +93,7 @@ public class SpesaGraficaTest {
 		lblDescrizione.setText("Descrizione");
 		
 		Label lblCodice = new Label(shell, SWT.NONE);
-		lblCodice.setBounds(10, 76, 55, 15);
+		lblCodice.setBounds(10, 80, 55, 15);
 		lblCodice.setText("Codice");
 		
 		Label lblPrezzo = new Label(shell, SWT.NONE);
@@ -107,11 +107,41 @@ public class SpesaGraficaTest {
 		descrizione_text.setBounds(80, 38, 76, 21);
 		
 		codice_text = new Text(shell, SWT.BORDER);
-		codice_text.setBounds(80, 70, 76, 21);
+		codice_text.setBounds(80, 80, 76, 21);
 		
 		prezzo_text = new Text(shell, SWT.BORDER);
 		prezzo_text.setText("");
 		prezzo_text.setBounds(80, 108, 76, 21);
+		
+		Button btnAggiungi = new Button(shell, SWT.NONE);
+		btnAggiungi.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnAggiungi.setBounds(174, 70, 75, 25);
+		btnAggiungi.setText("Aggiungi");
+		
+		Button btnElimina = new Button(shell, SWT.NONE);
+		btnElimina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnElimina.setBounds(174, 108, 75, 25);
+		btnElimina.setText("Elimina");
+		
+		Button btnSalva = new Button(shell, SWT.NONE);
+		btnSalva.setBounds(296, 108, 75, 25);
+		btnSalva.setText("Salva");
+		
+		Button btnCarica = new Button(shell, SWT.NONE);
+		btnCarica.setBounds(389, 108, 75, 25);
+		btnCarica.setText("Carica");
+		
+		Button btnCalcolaTotale = new Button(shell, SWT.NONE);
+		btnCalcolaTotale.setBounds(296, 70, 81, 25);
+		btnCalcolaTotale.setText("Calcola totale");
 
 	}
 }
