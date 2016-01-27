@@ -8,6 +8,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import java.io.*;
 
 public class SpesaGraficaTest {
 
@@ -20,7 +21,8 @@ public class SpesaGraficaTest {
 	private Text text;
 
 	private float prezzo=0;
-	private Prodotto p[];
+	Prodotto[] carrello=new Prodotto[100];
+	
 
 
 	/**
@@ -70,7 +72,7 @@ public class SpesaGraficaTest {
 		btnNuovoScontrino.setText("Nuovo scontrino");
 		
 		Label lblTesseraFedelt = new Label(shell, SWT.NONE);
-		lblTesseraFedelt.setBounds(296, 41, 81, 15);
+		lblTesseraFedelt.setBounds(281, 41, 81, 15);
 		lblTesseraFedelt.setText("Tessera fedelt\u00E0:");
 		
 		scontrino_text = new Text(shell, SWT.BORDER);
@@ -126,6 +128,8 @@ public class SpesaGraficaTest {
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				int i=0;
+				Prodotto p=carrello[i];
 				scontrino_text.setText(scontrino_text.getText() + prodotto_text.getText());
 				scontrino_text.setText(scontrino_text.getText() + "\n");
 				scontrino_text.setText(scontrino_text.getText() + descrizione_text.getText());
@@ -142,14 +146,17 @@ public class SpesaGraficaTest {
 				scontrino_text.setText(scontrino_text.getText() + "\n");
 				scontrino_text.setText(scontrino_text.getText() + prezzo_text.getText()+ "\n");
 				scontrino_text.setText(scontrino_text.getText() + "\n");
+				prezzo=prezzo+Float.parseFloat(prezzo_text.getText());
+				text.setText(String.valueOf(prezzo));
 				if(btnSi_1.isEnabled()){
 					scontrino_text.setText(scontrino_text.getText() + "ALIMENTARE\n");
+					p.codice=codice_text.getText();
+					p.descrizione=descrizione_text.getText();
+					p.prezzo=prezzo;
 				}
 				if(btnRadioButton.isEnabled()){
 					scontrino_text.setText(scontrino_text.getText() + "NON ALIMENTARE\n");
 				}
-				prezzo=prezzo+Float.parseFloat(prezzo_text.getText());
-				text.setText(String.valueOf(prezzo));
 			}
 		});
 		btnAggiungi.setBounds(174, 70, 75, 25);
@@ -159,12 +166,19 @@ public class SpesaGraficaTest {
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
 			}
 		});
 		btnElimina.setBounds(174, 108, 75, 25);
 		btnElimina.setText("Elimina");
 		
 		Button btnSalva = new Button(shell, SWT.NONE);
+		btnSalva.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			//	Textfile out=new Textfile("scontrino.txt", "w");
+			}
+		});
 		btnSalva.setBounds(296, 108, 75, 25);
 		btnSalva.setText("Salva");
 		
@@ -182,5 +196,13 @@ public class SpesaGraficaTest {
 		lblPrezzoTotale.setText("Prezzo totale: ");
 		text = new Text(shell, SWT.BORDER);
 		text.setBounds(96, 498, 76, 21);
+		
+		Button btnSi = new Button(shell, SWT.CHECK);
+		btnSi.setBounds(376, 40, 93, 16);
+		btnSi.setText("Si");
+		
+		Button btnNo = new Button(shell, SWT.CHECK);
+		btnNo.setBounds(376, 63, 93, 16);
+		btnNo.setText("No");
 	}
 }
