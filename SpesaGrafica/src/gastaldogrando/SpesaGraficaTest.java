@@ -18,8 +18,10 @@ public class SpesaGraficaTest {
 	private Text codice_text;
 	private Text prezzo_text;
 	private Text text;
+
 	private float prezzo=0;
 	private Prodotto p[];
+
 
 	/**
 	 * Launch the application.
@@ -124,7 +126,14 @@ public class SpesaGraficaTest {
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				scontrino_text.setText(scontrino_text.getText() + prodotto_text.getText());
+				scontrino_text.setText(scontrino_text.getText() + "\n");
+				scontrino_text.setText(scontrino_text.getText() + descrizione_text.getText());
+				scontrino_text.setText(scontrino_text.getText() + "\n");
+				scontrino_text.setText(scontrino_text.getText() + codice_text.getText());
+				scontrino_text.setText(scontrino_text.getText() + "\n");
+				scontrino_text.setText(scontrino_text.getText() + prezzo_text.getText());
+				scontrino_text.setText(scontrino_text.getText() + "\n");				
 				scontrino_text.setText(scontrino_text.getText() + prodotto_text.getText()+ "\n");
 				scontrino_text.setText(scontrino_text.getText() + "\n");
 				scontrino_text.setText(scontrino_text.getText() + descrizione_text.getText()+ "\n");
@@ -171,6 +180,7 @@ public class SpesaGraficaTest {
 		Label lblPrezzoTotale = new Label(shell, SWT.NONE);
 		lblPrezzoTotale.setBounds(10, 504, 76, 15);
 		lblPrezzoTotale.setText("Prezzo totale: ");
-		
+		text = new Text(shell, SWT.BORDER);
+		text.setBounds(96, 498, 76, 21);
 	}
 }
