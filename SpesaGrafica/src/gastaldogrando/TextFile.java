@@ -30,4 +30,13 @@ public class TextFile {
 		if(tmp==null) throw new FileException("End-of-file");
 		return tmp;
 	}
+	
+	public void closeFile() throws IOException{
+		if(this.mode=='W'){
+			writer.close();
+		}else{
+			reader.close();
+		}
+	}
+	
 }

@@ -13,8 +13,7 @@ public class Data {
 	
 	public Data(int g, int m, int a){
 		c = new GregorianCalendar(a,m-1,g);
-	}
-	
+	}	
 	
 	//this - d
 	public int getDifference(Data d){

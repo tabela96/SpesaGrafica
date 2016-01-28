@@ -4,14 +4,24 @@ public class Prodotto implements Cloneable {
 	String codice;
 	String descrizione;
 	float prezzo;
+	Data scadenza;
 
 	public Prodotto(String codice, String descrizione, float prezzo) {
 		super();
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
+		this.scadenza=scadenza;
 	}
 
+	public Data getScadenza(){
+		return scadenza;
+	}
+	
+	public void setScadenza(Data scadenza) {
+		this.scadenza = scadenza;
+	}
+	
 	public String getCodice() {
 		return codice;
 	}
