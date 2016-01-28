@@ -3,12 +3,20 @@ package gastaldogrando;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.jface.dialogs.PopupDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.internal.dialogs.ShowViewDialog;
+
 import java.io.*;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Popup;
+
 import org.eclipse.swt.widgets.List;
 
 public class SpesaGraficaTest {
@@ -19,6 +27,7 @@ public class SpesaGraficaTest {
 	private Text codice_text;
 	private Text prezzo_text;
 	private Text text;
+	private Text tot_text;
 	private float prezzo=0;
 	Prodotto[] carrello=new Prodotto[100];
 	private int num=0;
@@ -116,22 +125,32 @@ public class SpesaGraficaTest {
 		btnSi_1.setText("SI");
 		
 		
-		text = new Text(shlListaSpesaGrafica, SWT.BORDER);
-		text.setBounds(96, 498, 76, 21);
+		tot_text = new Text(shlListaSpesaGrafica, SWT.BORDER);
+		tot_text.setBounds(96, 498, 76, 21);
 		
+
+		Button btnNo_1 = new Button(shlListaSpesaGrafica, SWT.RADIO);
+		btnNo_1.setBounds(272, 10, 39, 16);
+		btnNo_1.setText("NO");
 		
 		Button btnAggiungi = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int i=0;
+				float prezzo=0;
 				scontrino.add(prodotto_text.getText(), 0);
 				scontrino.add(descrizione_text.getText(), 1);
 				scontrino.add(codice_text.getText(), 2);
 				scontrino.add(prezzo_text.getText(), 3);
 				if(btnSi_1.isEnabled()){
 					scontrino.add("ALIMENTARE: ", 0);
+				}else{
+					scontrino.add("NON ALIMENTARE: ", 0);
 				}
+				prezzo=(Float.parseFloat(prezzo_text.getText()));
+				tot_text.setText(String.valueOf(prezzo));
+				
 			}
 		});
 		btnAggiungi.setBounds(174, 70, 75, 25);
@@ -207,9 +226,6 @@ public class SpesaGraficaTest {
 		btnNo.setBounds(376, 63, 93, 16);
 		btnNo.setText("No");
 		
-		Button btnNo_1 = new Button(shlListaSpesaGrafica, SWT.RADIO);
-		btnNo_1.setBounds(272, 10, 39, 16);
-		btnNo_1.setText("NO");
 		
 	}
 }
