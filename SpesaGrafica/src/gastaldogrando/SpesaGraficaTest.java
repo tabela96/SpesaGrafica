@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.Popup;
 
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Menu;
 
 public class SpesaGraficaTest {
 
@@ -31,7 +32,9 @@ public class SpesaGraficaTest {
 	private float prezzo=0;
 	Prodotto[] carrello=new Prodotto[100];
 	private int num=0;
-
+    private float n=0;
+    private int elimina;
+ 
 
 	/**
 	 * Launch the application.
@@ -133,27 +136,31 @@ public class SpesaGraficaTest {
 		btnNo_1.setBounds(272, 10, 39, 16);
 		btnNo_1.setText("NO");
 		
+		
+		
 		Button btnAggiungi = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int i=0;
-				float prezzo=0;
+				
 				scontrino.add(prodotto_text.getText(), 0);
 				scontrino.add(descrizione_text.getText(), 1);
 				scontrino.add(codice_text.getText(), 2);
 				scontrino.add(prezzo_text.getText(), 3);
-				if(btnSi_1.isEnabled()){
+				if(btnSi_1.getSelection()){
 					scontrino.add("ALIMENTARE: ", 0);
-				}else{
+				}
+				if(btnNo_1.getSelection()){
 					scontrino.add("NON ALIMENTARE: ", 0);
 				}
-				prezzo=(Float.parseFloat(prezzo_text.getText()));
+				n=(Float.parseFloat(prezzo_text.getText()));
+				prezzo=prezzo+n;
 				tot_text.setText(String.valueOf(prezzo));
 				
 			}
 		});
-		btnAggiungi.setBounds(174, 70, 75, 25);
+		btnAggiungi.setBounds(165, 59, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
 		Button btnElimina = new Button(shlListaSpesaGrafica, SWT.NONE);
@@ -161,9 +168,12 @@ public class SpesaGraficaTest {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
+				
+		   // scontrino.remove();
+				
 			}
 		});
-		btnElimina.setBounds(174, 108, 75, 25);
+		btnElimina.setBounds(381, 103, 75, 25);
 		btnElimina.setText("Elimina");
 		
 		Button btnSalva = new Button(shlListaSpesaGrafica, SWT.NONE);
@@ -198,13 +208,16 @@ public class SpesaGraficaTest {
 				
 			}
 		});
-		btnSalva.setBounds(296, 108, 75, 25);
+		btnSalva.setBounds(263, 499, 75, 25);
 		btnSalva.setText("Salva");
 		
 		Button btnCarica = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnCarica.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
 		});
-		btnCarica.setBounds(389, 108, 75, 25);
+		btnCarica.setBounds(357, 499, 75, 25);
 		btnCarica.setText("Carica");
 		
 		Label lblAlimentare = new Label(shlListaSpesaGrafica, SWT.NONE);
