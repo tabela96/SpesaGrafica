@@ -144,10 +144,7 @@ public class SpesaGraficaTest {
 			public void widgetSelected(SelectionEvent e) {
 				int i=0;
 				
-				scontrino.add(prodotto_text.getText(), 0);
-				scontrino.add(descrizione_text.getText(), 1);
-				scontrino.add(codice_text.getText(), 2);
-				scontrino.add(prezzo_text.getText(), 3);
+				scontrino.add(prodotto_text.getText() + "    " + prezzo_text.getText()+"€", 0);
 				if(btnSi_1.getSelection()){
 					scontrino.add("ALIMENTARE: ", 0);
 				}
@@ -156,7 +153,7 @@ public class SpesaGraficaTest {
 				}
 				n=(Float.parseFloat(prezzo_text.getText()));
 				prezzo=prezzo+n;
-				tot_text.setText(String.valueOf(prezzo));
+				tot_text.setText(String.valueOf(prezzo)+ "   €");
 				
 			}
 		});
@@ -167,9 +164,9 @@ public class SpesaGraficaTest {
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
-				
-		   // scontrino.remove();
+				int a = scontrino.getSelectionIndex();
+				scontrino.remove(a);
+				tot_text.setText(" ");
 				
 			}
 		});
@@ -182,24 +179,13 @@ public class SpesaGraficaTest {
 			public void widgetSelected(SelectionEvent e) {
 					TextFile out;
 					try {
-						out = new TextFile("scontrino.txt", 'w');
-						for(int i=0;i<num;i++){
-							Prodotto p=carrello[i];
-							if(p instanceof Alimentari){
-								out.toFile("Alimentari");
-								out.toFile(p.getDescrizione());
-								out.toFile(p.getCodice());
-							/*	out.toFile(p.getScadenza().getGiorno());
-								out.toFile(p.getScadenza().getMese());
-								out.toFile(p.getScadenza().getAnno());*/
-							}else{
-								out.toFile("Non Alimentari");
-								out.toFile(p.getCodice());
-								out.toFile(p.getDescrizione());
-								out.toFile(String.valueOf(p.getPrezzo()));
-								//out.toFile(p.getMateriale());
-							}
-						}
+						out = new TextFile("D:/scontrino.txt", 'w');
+						out.toFile(String.valueOf(scontrino.getItem(0)));
+						/*
+						out.toFile(scontrino.getItem(2));
+						out.toFile(scontrino.getItem(3));
+						out.toFile(scontrino.getItem(4));
+						out.closeFile();*/
 					} catch (IOException | FileException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
