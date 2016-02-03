@@ -34,6 +34,7 @@ public class SpesaGraficaTest {
 	private int num=0;
     private float n=0;
     private int elimina;
+    private int conta=0;
  
 
 	/**
@@ -80,6 +81,8 @@ public class SpesaGraficaTest {
 			@Override
 			public void widgetSelected(SelectionEvent e){
 				scontrino.removeAll();
+				prezzo=0;
+				tot_text.setText(" ");
 			}
 		});
 		btnNuovoScontrino.setBounds(368, 10, 101, 25);
@@ -155,6 +158,7 @@ public class SpesaGraficaTest {
 				prezzo=prezzo+n;
 				tot_text.setText(String.valueOf(prezzo)+ "   €");
 				
+				conta=conta+2;
 			}
 		});
 		btnAggiungi.setBounds(165, 59, 75, 25);
@@ -168,6 +172,7 @@ public class SpesaGraficaTest {
 				scontrino.remove(a);
 				tot_text.setText(" ");
 				
+				
 			}
 		});
 		btnElimina.setBounds(381, 103, 75, 25);
@@ -177,19 +182,22 @@ public class SpesaGraficaTest {
 		btnSalva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-					TextFile out;
-					try {
-						out = new TextFile("D:/scontrino.txt", 'w');
-						out.toFile(String.valueOf(scontrino.getItem(0)));
-						/*
-						out.toFile(scontrino.getItem(2));
-						out.toFile(scontrino.getItem(3));
-						out.toFile(scontrino.getItem(4));
-						out.closeFile();*/
-					} catch (IOException | FileException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					//TextFile out;
+				
+				
+					
+						FileOutputStream out;
+						try {
+							for(int i=0;i<conta;i++){
+							out = new FileOutputStream("Z:/scontrino.txt");
+							ObjectOutputStream oos= new ObjectOutputStream(out);
+							oos.writeObject(scontrino.getItem(i));
+							oos.close();
+							}
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null, "Impossibile salvare il file");
+						}
 					
 				
 			}
@@ -201,6 +209,29 @@ public class SpesaGraficaTest {
 		btnCarica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				FileReader f;
+			    try {
+					f=new FileReader("Z:/prova.txt");
+					 BufferedReader b;
+					 b=new BufferedReader(f);
+					 String s;
+					 while(true){
+						 s=b.readLine();
+						 if(s==null)
+							 break;
+						 scontrino.add(s);
+					 }
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "File non trovato");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			   
 			}
 		});
 		btnCarica.setBounds(357, 499, 75, 25);
