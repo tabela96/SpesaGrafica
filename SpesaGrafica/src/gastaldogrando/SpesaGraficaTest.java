@@ -130,6 +130,14 @@ public class SpesaGraficaTest {
 		btnSi_1.setBounds(239, 10, 30, 16);
 		btnSi_1.setText("SI");
 		
+		Button btnSi = new Button(shlListaSpesaGrafica, SWT.CHECK);
+		btnSi.setBounds(376, 40, 93, 16);
+		btnSi.setText("Si");
+		
+		Button btnNo = new Button(shlListaSpesaGrafica, SWT.CHECK);
+		btnNo.setBounds(376, 63, 93, 16);
+		btnNo.setText("No");
+		
 		
 		tot_text = new Text(shlListaSpesaGrafica, SWT.BORDER);
 		tot_text.setBounds(96, 498, 76, 21);
@@ -139,14 +147,12 @@ public class SpesaGraficaTest {
 		btnNo_1.setBounds(272, 10, 39, 16);
 		btnNo_1.setText("NO");
 		
-		
-		
+		//AGGIUNGI PRODOTTO
 		Button btnAggiungi = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int i=0;
-				
 				scontrino.add(prodotto_text.getText() + "    " + prezzo_text.getText()+"€", 0);
 				if(btnSi_1.getSelection()){
 					scontrino.add("ALIMENTARE: ", 0);
@@ -157,13 +163,14 @@ public class SpesaGraficaTest {
 				n=(Float.parseFloat(prezzo_text.getText()));
 				prezzo=prezzo+n;
 				tot_text.setText(String.valueOf(prezzo)+ "   €");
-				
 				conta=conta+2;
 			}
 		});
 		btnAggiungi.setBounds(165, 59, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
+		
+		//ELIMINA PRODOTTO
 		Button btnElimina = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -171,21 +178,16 @@ public class SpesaGraficaTest {
 				int a = scontrino.getSelectionIndex();
 				scontrino.remove(a);
 				tot_text.setText(" ");
-				
-				
 			}
 		});
 		btnElimina.setBounds(381, 103, 75, 25);
 		btnElimina.setText("Elimina");
 		
+		//SALVA SU FILE
 		Button btnSalva = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnSalva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-					//TextFile out;
-				
-				
-					
 						FileOutputStream out;
 						try {
 							for(int i=0;i<conta;i++){
@@ -205,6 +207,8 @@ public class SpesaGraficaTest {
 		btnSalva.setBounds(263, 499, 75, 25);
 		btnSalva.setText("Salva");
 		
+		
+		//CARICA DA FILE
 		Button btnCarica = new Button(shlListaSpesaGrafica, SWT.NONE);
 		btnCarica.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -248,13 +252,6 @@ public class SpesaGraficaTest {
 		text = new Text(shlListaSpesaGrafica, SWT.BORDER);
 		text.setBounds(96, 498, 76, 21);
 		
-		Button btnSi = new Button(shlListaSpesaGrafica, SWT.CHECK);
-		btnSi.setBounds(376, 40, 93, 16);
-		btnSi.setText("Si");
-		
-		Button btnNo = new Button(shlListaSpesaGrafica, SWT.CHECK);
-		btnNo.setBounds(376, 63, 93, 16);
-		btnNo.setText("No");
 		
 		
 	}
