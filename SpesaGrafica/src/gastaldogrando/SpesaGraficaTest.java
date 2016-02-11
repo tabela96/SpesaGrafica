@@ -4,6 +4,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.jface.dialogs.PopupDialog;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -191,10 +193,14 @@ public class SpesaGraficaTest {
 						FileOutputStream out;
 						try {
 							for(int i=0;i<conta;i++){
-							out = new FileOutputStream("Z:/scontrino.txt");
+							out = new FileOutputStream("D:/Informatica/2015-2016/prova.txt");
 							ObjectOutputStream oos= new ObjectOutputStream(out);
 							oos.writeObject(scontrino.getItem(i));
 							oos.close();
+							/*
+							BufferedWriter scrittore = new BufferedWriter(new FileWriter("D:/Informatica/2015-2016/scontrino.txt")); //crea, sostituisce
+							scrittore = new BufferedWriter(new FileWriter("D:/Informatica/2015-2016/scontrino.txt", true));	 //crea, aggiunge
+							BufferedReader lettore = new BufferedReader(new FileReader("D:/Informatica/2015-2016/scontrino.txt"));	*/
 							}
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
@@ -213,10 +219,16 @@ public class SpesaGraficaTest {
 		btnCarica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				FileDialog fileDialog=new FileDialog(shlListaSpesaGrafica);
+				fileDialog.setFilterExtensions(new String[]{"*.txt", "*.csv", "*.*"}); 
+				String fileScelto = fileDialog.open();
+				if(fileScelto != null) {
+					MessageDialog.openInformation(shlListaSpesaGrafica, "File ", fileScelto);
+					MessageDialog.openInformation(shlListaSpesaGrafica, "File (solo nome)", fileDialog.getFileName());
+				}
 				FileReader f;
 			    try {
-					f=new FileReader("Z:/prova.txt");
+					f=new FileReader("D:/Informatica/2015-2016/prova.txt");
 					 BufferedReader b;
 					 b=new BufferedReader(f);
 					 String s;
